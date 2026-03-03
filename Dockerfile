@@ -1,5 +1,7 @@
-ARG NF_PROJECT_ID
-ARG NF_SERVICE_ID
-ARG NF_BUILD_ID
-
-FROM registry.northflank.com/${NF_PROJECT_ID}/${NF_SERVICE_ID}:${NF_BUILD_ID}
+ARG BUNDLE_URL
+FROM node:20-alpine
+WORKDIR /app
+ADD ${BUNDLE_URL} /tmp/source.tar.gz
+RUN tar xzf /tmp/source.tar.gz && rm /tmp/source.tar.gz
+RUN npm install --omit=dev
+CMD ["node", "dist/index.js"]
