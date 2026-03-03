@@ -1,1 +1,5 @@
-FROM node:20-alpine
+ARG NF_PROJECT_ID
+ARG NF_SERVICE_ID
+ARG NF_BUILD_ID
+
+FROM registry.northflank.com/${NF_PROJECT_ID}/${NF_SERVICE_ID}:${NF_BUILD_ID}
